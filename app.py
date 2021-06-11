@@ -36,8 +36,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start><br/>"
-        f"/api/v1.0/<start>/<end><br/>"
+        f"/api/v1.0/2017-08-23<br>"
+        f"/api/v1.0/2016-08-23/2017-08-23<br/>"
 
     )
 
@@ -47,8 +47,7 @@ def precipitation():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of passenger data including the name, age, and sex of each passenger"""
-    # Query all passengers
+    """Return a list of precipitation and date"""
     # Find the most recent date in the data set.
     recent_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first() 
     
@@ -65,6 +64,70 @@ def precipitation():
 
     return jsonify(prcp_rows)
 
+@app.route("/api/v1.0/stations")
+def stations():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
+    """Return a list of precipitation and date"""
+    # List the station and name
+    result = session.query(Station.station, Station.name).all()
+
+    session.close()
+
+    return jsonify(result)
+
+@app.route("/api/v1.0/tobs")
+def tobs():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return the dates and temperature observations of the **most active station** for the most recent 12 months of data"""
+    # Find the most recent date in the data set.
+    recent_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first() 
+    
+    # date 365 days ago from today
+    year_ago = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    
+    # query the most active station in the last 12 months
+    active = session.query(Measurement.station).\
+    group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).\
+    filter(Measurement.date >= year_ago).first()
+
+    # query tobs for the most active station
+    result = session.query(Measurement.tobs).filter(Measurement.station == active[0]).all()
+
+    session.close()
+
+    return jsonify(result)
+
+@app.route("/api/v1.0/<start>")
+def startdate(start):
+    
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+    """Fetch min, max, and avg for all dates greater than and equal to the start date """
+    result = session.query(func.max(Measurement.tobs),func.min(Measurement.tobs),func.avg(Measurement.tobs)).\
+    filter(Measurement.date >= start).all()
+
+    session.close()
+
+    return jsonify(result)
+
+@app.route("/api/v1.0/<start>/<end>")
+def startend(start,end):
+    
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Fetch min, max, and avg for dates between the start and end date inclusive. """
+    result = session.query(func.max(Measurement.tobs),func.min(Measurement.tobs),func.avg(Measurement.tobs)).\
+    filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+
+    session.close()
+
+    return jsonify(result)
+    
 if __name__ == '__main__':
     app.run(debug=True)
