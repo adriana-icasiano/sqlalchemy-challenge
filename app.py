@@ -59,15 +59,15 @@ def precipitation():
     # date 365 days ago from today
     year_ago = dt.date(2017, 8, 23) - dt.timedelta(days=365)
     
-    result = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= year_ago).\
-    order_by(Measurement.date).all()
+    result = session.query(Measurement.date, func.avg(Measurement.prcp)).group_by(Measurement.date).\
+    order_by(Measurement.date).filter(Measurement.date >= year_ago).all()
     
     session.close()
 
-    # Create a dictionary from the row data and append to a list of all_passengers
-    prcp_rows = [{"Date": result[1], "Precipitation": result[0]} for result in result]
+        # Create a dictionary from the row data and append to a list of all_passengers
+    # prcp_rows = [{"Date": result[0], "Precipitation": result[1]} for result in result]
 
-    return jsonify(prcp_rows)
+    return jsonify(dict(result))
 
 @app.route("/api/v1.0/stations")
 def stations():
@@ -80,7 +80,7 @@ def stations():
 
     session.close()
 
-    return jsonify(result)
+    return jsonify(list(result))
 
 @app.route("/api/v1.0/tobs")
 def tobs():
@@ -104,7 +104,7 @@ def tobs():
 
     session.close()
 
-    return jsonify(result)
+    return jsonify(lsit(result))
 
 @app.route("/api/v1.0/<start>")
 def startdate(start):
@@ -119,9 +119,10 @@ def startdate(start):
     session.close()
 
     # Create a dictionary from the row data and append to a list of all_passengers
-    dict = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
+    dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
     
-    return jsonify(dict)
+    
+    return jsonify(dict_tobs)
 
 @app.route("/api/v1.0/<start>/<end>")
 def startend(start,end):
@@ -136,9 +137,9 @@ def startend(start,end):
     session.close()
 
     # Create a dictionary from the row data and append to a list of all_passengers
-    dict = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
+    dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
     
-    return jsonify(dict)
-    
+    return jsonify(dict_tobs)
+
 if __name__ == '__main__':
     app.run(debug=True)
