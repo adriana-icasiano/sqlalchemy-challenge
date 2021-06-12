@@ -32,12 +32,17 @@ app = Flask(__name__)
 def welcome():
     """List all available api routes."""
     return (
-        f"Available Routes:<br/>"
-        f"/api/v1.0/precipitation<br/>"
-        f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/2017-08-23<br>"
-        f"/api/v1.0/2016-08-23/2017-08-23<br/>"
+        f"Available Routes:<br/>""<br/>"
+        f"Return a list of precipitation and date, in JSON representation of dictionary<br/>"
+        f"/api/v1.0/precipitation<br/>""<br/>"
+        f"Return a JSON list of stations<br/>"  
+        f"/api/v1.0/stations<br/>""<br/>" 
+        f"Return a JSON list the dates and temperature observations of the **most active station** for the most recent 12 months of data""<br/>"
+        f"/api/v1.0/tobs<br/>""<br/>"
+        f"Return a JSONified dictionary of the min, max, and avg for all dates greater than and equal to the start date (YYYY-MM-DD)""<br/>"
+        f"/api/v1.0/2017-08-23<br>""<br/>"
+        f"Return a JSONified dictionary of the min, max, and avg for dates between the start and end date inclusive (YYYY-MM-DD)""<br/>"
+        f"/api/v1.0/2017-08-22/2017-08-23<br/>"
 
     )
 
@@ -69,7 +74,7 @@ def stations():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of precipitation and date"""
+    """Return a list of stations"""
     # List the station and name
     result = session.query(Station.station, Station.name).all()
 
@@ -95,7 +100,7 @@ def tobs():
     filter(Measurement.date >= year_ago).first()
 
     # query tobs for the most active station
-    result = session.query(Measurement.tobs).filter(Measurement.station == active[0]).all()
+    result = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == active[0]).all()
 
     session.close()
 
@@ -107,13 +112,16 @@ def startdate(start):
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
-    """Fetch min, max, and avg for all dates greater than and equal to the start date """
-    result = session.query(func.max(Measurement.tobs),func.min(Measurement.tobs),func.avg(Measurement.tobs)).\
+    """Return the min, max, and avg for all dates greater than and equal to the start date """
+    results = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).\
     filter(Measurement.date >= start).all()
 
     session.close()
 
-    return jsonify(result)
+    # Create a dictionary from the row data and append to a list of all_passengers
+    dict = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
+    
+    return jsonify(dict)
 
 @app.route("/api/v1.0/<start>/<end>")
 def startend(start,end):
@@ -121,13 +129,16 @@ def startend(start,end):
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Fetch min, max, and avg for dates between the start and end date inclusive. """
-    result = session.query(func.max(Measurement.tobs),func.min(Measurement.tobs),func.avg(Measurement.tobs)).\
+    """Return the min, max, and avg for dates between the start and end date inclusive. """
+    results = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).\
     filter(Measurement.date >= start).filter(Measurement.date <= end).all()
-
+    
     session.close()
 
-    return jsonify(result)
+    # Create a dictionary from the row data and append to a list of all_passengers
+    dict = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
+    
+    return jsonify(dict)
     
 if __name__ == '__main__':
     app.run(debug=True)
