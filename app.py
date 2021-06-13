@@ -113,7 +113,9 @@ def startdate(start):
     session = Session(engine)
     
     """Return the min, max, and avg for all dates greater than and equal to the start date """
-    results = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).\
+    sel = func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)
+    
+    results = session.query(*sel).\
     filter(Measurement.date >= start).all()
 
     session.close()
@@ -131,7 +133,9 @@ def startend(start,end):
     session = Session(engine)
 
     """Return the min, max, and avg for dates between the start and end date inclusive. """
-    results = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).\
+    sel = [func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)]
+
+    results = session.query(*sel).\
     filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     
     session.close()
