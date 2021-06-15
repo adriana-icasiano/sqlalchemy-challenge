@@ -28,8 +28,7 @@ Steps:
 - - -
 
 ## Step 2 - Climate App
-Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
-* Use Flask to create your routes.
+Design a Flask API based on the queries that you have just developed.
 
 ### Routes
 * `/`
@@ -48,7 +47,7 @@ Now that you have completed your initial analysis, design a Flask API based on t
   * When given the start date only, calculate min, max, and avg for all dates greater than and equal to the start date.
   * When given the start and the end date, calculate the minimum, average, and maximum obvserved temperature for dates between the start and end date inclusive.
   * Return a JSONified dictionary of these minimum, maximum, and average temperatures.
-
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/24567c3ece4e710d977ad69ca2785905a26a6308/Images/home_route_AI.PNG)
 
 ### Temperature Analysis I
 
