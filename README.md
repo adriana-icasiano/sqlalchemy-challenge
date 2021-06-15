@@ -48,18 +48,18 @@ Discussion: The independent-samples t-test (or independent t-test, for short) co
 The t-value is 4.62 and the p-value is 0.0003. Because the p-value is less than 0.05, we reject the null hypothesis and we conclude that the difference of means in temperature between June and December is different from zero. 
 
 ### Temperature Analysis II
-For 8/1/2017 - 8/7/2017, bar chart of average temperature with peak-to-peak (TMAX-TMIN)  as error bar. 
+For 8/1/2017-8/7/2017, bar chart of average temperature with peak-to-peak (TMAX-TMIN)  as error bar. 
 
 ![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/trip_temp.PNG)
   
 
 ### Daily Rainfall Average
-For 8/1/2017 - 8/7/2017, rainfall at each station. 
+For 8/1/2017-8/7/2017, average rainfall at each station. 
 
 ![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/station_precip.PNG)
 
 ### Daily Temperature Normals
 
-For August 1 - 7 for all previous year, area plot of daily normal temperature. 
+For 8/1-8/7 for all previous year, area plot of daily normal temperature. 
 
 ![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/trip_normal_temp.PNG)
