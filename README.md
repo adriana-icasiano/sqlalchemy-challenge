@@ -10,12 +10,14 @@ Resources:  [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resour
 ## Table of Contents ##
 * [Precipitation Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Precipitation-Analysis)
 * [Station Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Station-Analysis)
+* [Climate App](https://github.com/adriana-icasiano/sqlalchemy-challenge#Climate-App)
+* [Bonus](https://github.com/adriana-icasiano/sqlalchemy-challenge#Bonus)
 * [Temperature Analysis I](https://github.com/adriana-icasiano/sqlalchemy-challenge#Temperature-Analysis-I)
 * [Temperature Analysis II](https://github.com/adriana-icasiano/sqlalchemy-challenge#Temperature-Analysis-II)
 * [Daily Rainfall Average](https://github.com/adriana-icasiano/sqlalchemy-challenge#Daily-Rainfall-Average)
 * [Daily Temperature Normals](https://github.com/adriana-icasiano/sqlalchemy-challenge#Daily-Temperature-Normals)
 
-## Step 1 - Climate Analysis and Exploration
+## Climate Analysis and Exploration
 
 ### Precipitation Analysis
 Average precipitation per day for the previous 12 months. 
@@ -30,11 +32,12 @@ The lowerst, highest, and average temperature (TOBS) in the last 12 months for t
 
 - - -
 
-## Step 2 - Climate App
+## Climate App
 Design a Flask API based on the queries that you have just developed.
 
 ![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/24567c3ece4e710d977ad69ca2785905a26a6308/Images/home_route_AI.PNG)
 
+### Bonus
 ### Temperature Analysis I
 T-test of average temperature in June and December at all stations across all available years in the dataset. 
 * 
