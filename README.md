@@ -14,8 +14,10 @@ Steps:
 * Load the query results into a Pandas DataFrame and set the index to the date column.
 * Plot the results using the DataFrame `plot` method. 
 * Use Pandas to print the summary statistics for the precipitation data. 
-* Close out your session.
-*
+
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/precipitation_analysis_AI.PNG)
+
+
 ### Station Analysis
 * Design a query to calculate the total number of stations in the dataset.
 * Design a query that lists all stations with their corresponding observation count in descending order (observation count corresponds to the number of rows per station).
@@ -23,7 +25,8 @@ Steps:
 * Calculate the lowest, highest, and average temperature for that station id (i.e., the one with the greatest number of observations).
 * Design a query to retrieve the last 12 months of temperature observation data (TOBS) for the most active station.
 * Plot the results as a histogram with `bins=12`.
-* Close out your session.
+* 
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/station_histogram_AI.PNG)
 
 - - -
 
@@ -54,6 +57,8 @@ The t-value is 4.62 and the p-value is 0.0003. Because the p-value is less than 
   * Use "Trip Avg Temp" as the title.
   * Use the average temperature as the bar height (y value).
   * Use the peak-to-peak (TMAX-TMIN) value as the y error bar (YERR).
+
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/trip_temp.PNG)
   
 
 ### Daily Rainfall Average
@@ -62,6 +67,8 @@ The t-value is 4.62 and the p-value is 0.0003. Because the p-value is less than 
 * Calculate the rainfall per weather station using the previous year's matching dates.
 * Sort this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation.
 
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/station_precip.PNG)
+
 ### Daily Temperature Normals
 
 * Calculate the daily normals across all weather stations for all previous years with matching month and day for your trip (August first to August seventh, inclusive). Normals are the averages for the min, avg, and max temperatures.
@@ -69,3 +76,5 @@ The t-value is 4.62 and the p-value is 0.0003. Because the p-value is less than 
 * Use the `daily_normals` function to calculate the normals for each date string and append the resulting tuples to a list (so you will end up with a list of tuples).
 * Load the list of daily normals into a Pandas DataFrame and set the index equal to the date.
 * Use Pandas to plot an area plot (`stacked=False`) for the daily normals.
+
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/31d54e1f35c016526c9c8dc38454eced112b6eb7/Images/trip_normal_temp.PNG)
