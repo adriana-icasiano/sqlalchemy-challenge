@@ -78,6 +78,7 @@ def stations():
     # List the station and name
     result = session.query(Station.station, Station.name).all()
 
+    #Close session
     session.close()
 
     return jsonify(list(result))
@@ -102,9 +103,10 @@ def tobs():
     # query tobs for the most active station
     result = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == active[0]).all()
 
+    #Close session
     session.close()
 
-    return jsonify(lsit(result))
+    return jsonify(list(result))
 
 @app.route("/api/v1.0/<start>")
 def startdate(start):
@@ -118,12 +120,12 @@ def startdate(start):
     results = session.query(*sel).\
     filter(Measurement.date >= start).all()
 
+    #Close session
     session.close()
 
-    # Create a dictionary from the row data and append to a list of all_passengers
+    # Create a dictionary 
     dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
-    
-    
+        
     return jsonify(dict_tobs)
 
 @app.route("/api/v1.0/<start>/<end>")
@@ -138,9 +140,10 @@ def startend(start,end):
     results = session.query(*sel).\
     filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     
+    #Close session
     session.close()
 
-    # Create a dictionary from the row data and append to a list of all_passengers
+    # Create a dictionary 
     dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
     
     return jsonify(dict_tobs)
