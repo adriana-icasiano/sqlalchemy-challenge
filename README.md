@@ -7,6 +7,10 @@ Steps:
 * Link Python to the database by creating a SQLAlchemy session
 Resources:  [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) 
 
+## Table of Contents ##
+* [Precipitation Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Precipitation-Analysis)
+
+
 ## Step 1 - Climate Analysis and Exploration
 
 ### Precipitation Analysis
