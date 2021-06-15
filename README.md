@@ -1,11 +1,11 @@
 # sqlalchemy-challenge
 
-Use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis completed using SQLAlchemy ORM queries, Pandas, and Matplotlib, Flask.
+Use Python and SQLAlchemy to do climate analysis and data exploration of your climate database. All of the following analysis completed using SQLAlchemy ORM queries, Pandas, and Matplotlib, Flask.
 Steps:
 * Use SQLAlchemy `create_engine` to connect to your sqlite database.
 * Use SQLAlchemy `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
 * Link Python to the database by creating a SQLAlchemy session
-Resources:  [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) 
+Resource: Hawaii weather station dataset [hawaii.sqlite](Resources/hawaii.sqlite) 
 
 ## Table of Contents ##
 * [Precipitation Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Precipitation-Analysis)
