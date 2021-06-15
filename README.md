@@ -13,7 +13,7 @@ Steps:
 * Using this date, retrieve the average precipitation per day for the previous 12 months. The query should be sorted by date ascending. **Note** you do not pass in the date as a variable to your query.
 * Load the query results into a Pandas DataFrame and set the index to the date column.
 * Plot the results using the DataFrame `plot` method. 
-* Use Pandas to print the summary statistics for the precipitation data. **HINT:** This will be a single line of code.
+* Use Pandas to print the summary statistics for the precipitation data. 
 * Close out your session.
 *
 ### Station Analysis
