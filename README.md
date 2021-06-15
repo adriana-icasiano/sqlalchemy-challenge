@@ -30,23 +30,6 @@ Steps:
 ## Step 2 - Climate App
 Design a Flask API based on the queries that you have just developed.
 
-### Routes
-* `/`
-  * Home page.
-  * List all routes that are available.
-* `/api/v1.0/precipitation`
-  * Using the query from part 1 (most recent 12 months of precipitation data), convert the query reszults to a dictionary using `date` as the key and `prcp` as the value.
-  * Return the JSON representation of your dictionary (note the specific format of your dictionary as required from above).
-* `/api/v1.0/stations`
-  * Return a JSON list of stations from the dataset.
-* `/api/v1.0/tobs`
-  * Query the dates and temperature observations of the **most active station** for the most recent 12 months of data.
-  * Return a JSON list of temperature observations (TOBS) for that year.
-* `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
-  * Create a query that returns the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-  * When given the start date only, calculate min, max, and avg for all dates greater than and equal to the start date.
-  * When given the start and the end date, calculate the minimum, average, and maximum obvserved temperature for dates between the start and end date inclusive.
-  * Return a JSONified dictionary of these minimum, maximum, and average temperatures.
 ![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/24567c3ece4e710d977ad69ca2785905a26a6308/Images/home_route_AI.PNG)
 
 ### Temperature Analysis I
@@ -55,7 +38,8 @@ Design a Flask API based on the queries that you have just developed.
 * You may either use SQLAlchemy or pandas's `read_csv()` using `hawaii_measurements.csv` to perform this portion.
 * Identify the average temperature in June at all stations across all available years in the dataset. Do the same for December temperature.
 * Use the t-test to determine whether the difference in the means, if any, is statistically significant. Will you use a paired t-test, or an unpaired t-test? Why?
-
+* 
+![](https://github.com/adriana-icasiano/sqlalchemy-challenge/blob/2e587c12365da07f1e2d5b91b294e1ca819f17d3/Images/t_test.PNG)<br>
 .
 Discussion: The independent-samples t-test (or independent t-test, for short) compares the means between two unrelated groups on the same continuous, dependent variable. An indepedent t-test is appropriate because the June and Decemeber are two different datasets. The null hypothesis is that the means for June and December is equal. 
 
