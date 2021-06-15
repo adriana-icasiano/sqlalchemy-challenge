@@ -9,7 +9,11 @@ Resources:  [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resour
 
 ## Table of Contents ##
 * [Precipitation Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Precipitation-Analysis)
-
+* [Station Analysis](https://github.com/adriana-icasiano/sqlalchemy-challenge#Station-Analysis)
+* [Temperature Analysis I](https://github.com/adriana-icasiano/sqlalchemy-challenge#Temperature-Analysis-I)
+* [Temperature Analysis II](https://github.com/adriana-icasiano/sqlalchemy-challenge#Temperature-Analysis-II)
+* [Daily Rainfall Average](https://github.com/adriana-icasiano/sqlalchemy-challenge#Daily-Rainfall-Average)
+* [Daily Temperature Normals](https://github.com/adriana-icasiano/sqlalchemy-challenge#Daily-Temperature-Normals)
 
 ## Step 1 - Climate Analysis and Exploration
 
