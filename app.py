@@ -116,17 +116,18 @@ def startdate(start):
     
     """Return the min, max, and avg for all dates greater than and equal to the start date """
     sel = func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)
-    
-    results = session.query(*sel).\
-    filter(Measurement.date >= start).all()
+    results = session.query(*sel).filter(Measurement.date >= start).all()
+
+    for row in results:
+        temp_dict = {}
+        temp_dict['Max'] = row[0]
+        temp_dict['Min'] = row[1]
+        temp_dict['Avg'] = row[2]
 
     #Close session
     session.close()
 
-    # Create a dictionary 
-    dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
-        
-    return jsonify(dict_tobs)
+    return jsonify(temp_dict)
 
 @app.route("/api/v1.0/<start>/<end>")
 def startend(start,end):
@@ -135,18 +136,19 @@ def startend(start,end):
     session = Session(engine)
 
     """Return the min, max, and avg for dates between the start and end date inclusive. """
-    sel = [func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)]
+    sel = func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)
+    results = session.query(*sel).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
 
-    results = session.query(*sel).\
-    filter(Measurement.date >= start).filter(Measurement.date <= end).all()
-    
+    for row in results:
+        temp_dict = {}
+        temp_dict['Max'] = row[0]
+        temp_dict['Min'] = row[1]
+        temp_dict['Avg'] = row[2]
+
     #Close session
     session.close()
 
-    # Create a dictionary 
-    dict_tobs = [{"Max": result[0], "Min": result[1], "Avg": result[2] } for result in results]
-    
-    return jsonify(dict_tobs)
+    return jsonify(temp_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)
